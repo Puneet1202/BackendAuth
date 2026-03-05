@@ -2,8 +2,15 @@
 
  const userschema = new mongoose.Schema({
      username : String,
-     email : String,
-     password : String,
+     email : {
+        type:String,
+        required:true,
+        unique:true
+     },
+     password : {
+        type:String,
+        required:true  
+     },
      
  })
 
