@@ -15,12 +15,22 @@ export async function registerUser(req,res){
             return res.status(400).json({message:'User not created'})
         }
         const token = jwt.sign({ 
-            id:user_id
+            id:user._id         
         },process.env.JWT_SECRET,)
-        return res.status(200).json({message:'User created successfully',user,token})
+        res.cookie("token",token)
+        return res.status(200).json({message:'User created successfully',user})
      
-    } catch (error) {
+    } catch (error) {         
         console.log(error)
+        res.status(500).json({ message: "Server mein kuch phat gaya!", error: error.message });
     }
 }
+
+
+
+
+ 
+
+
+
 
